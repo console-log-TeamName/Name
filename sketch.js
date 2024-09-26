@@ -7,8 +7,24 @@ let visible = false;
 let scaleFactor = 1.0;
 let posX=400;
 let posX2=400;
+let posX5=400;
+let posX6=0;
 let angle =0;
 let left = false;
+let left2=false;
+let posX3 = 400;
+let posX4=0;
+let posY3 = [150, 150, 150];
+let posY2 = [150, 150, 150];
+let cloudActive = [true, false, false]; 
+let cloudActive1 = [true, false, false];
+let stopped=false;
+let stopped2=false;
+let stopped3=false;
+let visible1=true;
+let visible2=true;
+let left3=false;
+let left4=false;
 function setup() {
   createCanvas(400, 400);
   frameRate(12);
@@ -23,6 +39,13 @@ function drawCloud(x, y, size) {
   ellipse(x - size/2, y - size/2, size, size);
   ellipse(x + size/2, y - size/2, size, size);
   ellipse(x, y-size, size, size);
+}
+function timer(x, y, size) {
+  push();
+  noStroke();
+  fill(225);
+  ellipse(x, y, size, size *2);
+  push();
 }
 function drawCloudBig(x, y, size){
   noStroke();
@@ -108,12 +131,42 @@ function drawWater(x,y){
   endShape();
   pop()
 }
+function drawRoad(i){
+  push();
+  stroke("black");
+  strokeWeight(5)
+  for (i; i>-600; i-=150){
+    line(i, 300, i-100, 300); 
+  }
+  pop();
+}
+
+function drawCar(x, y) {
+  push();
+  stroke("black");
+  fill("blue");
+  translate(x, y);
+  rect(70, 0, 60, 60);
+  rect(0, 60, 200, 40);
+  line(70, 0, 0, 60);
+  line(130, 0, 200, 60);
+  circle(50, 100, 40);
+  circle(150, 100, 40);
+  pop();
+}
+function drawBlock(x,y){
+  push();
+  fill("black");
+  rect(x,y,100,50);
+  fill("yellow");
+  rect(x, y+10, 100, 20);
+  pop();
+}
 function draw() {
   if(!left){
   if(moveX<=0&&moveX>-500){
   background(225);
-  
-  drawCloudBig(200+moveX,50,100)
+  drawCloudBig(200+moveX,50,100);
   for(let i = 0; i<xT.length; i++){
     if(sizeT[i]<50){
       yT[i]-=4;
@@ -124,10 +177,10 @@ function draw() {
       drawCloud(xT[i]+moveX,yT[i],50);
       if(sizeB[i]<175){
         sizeB[i]+=2;
-        drawCloudBig(200+moveX,50,sizeB[i])
+        drawCloudBig(200+moveX,50,sizeB[i]);
       }else{
-        drawCloudBig(200+moveX,50,sizeB[i])
-        moveX-=2
+        drawCloudBig(200+moveX,50,sizeB[i]);
+        moveX-=2;
       }
     }
   }
@@ -188,12 +241,13 @@ function draw() {
 }
 }
 if(left){
-  background(220);
+  background(225);
     stroke("black");
     if (posX > 20) {
       posX -= 10;  
     } else if (posX <= 20 && posX > 0) {
       posX = 0;
+    
     }
 
     if (posX == 0 && scaleFactor > 0.7) {
@@ -209,6 +263,8 @@ if(left){
         posX2 -= 10;  
       } else if (posX2 <= 20 && posX2 > 0) {
         posX2 = 0;
+      }else if (posX2<1) {
+       stopped2=true;
       }
     
     }
@@ -233,5 +289,131 @@ if(left){
       line(180, 50-posX2, 50, 180-posX2);
       pop();
     }
+    if(posX2<=0){
+      left2=true;
+    
+    }
+    if(stopped2){
+      posX-=15;
+      posX2-=15;
+    }
+}
+if(left2){
+  stroke("black")
+  if (posX3 > 20) {
+    posX3-=10;
+  } else if (posX3 <= 20 && posX3 > 0) {
+    posX3 = 0;
+    visible1=false;
+    
+  }
+
+  for (let j = 0; j < 4; j++) {
+    if (cloudActive[j]) {
+      if (posY3[j] > -30) {
+        posY3[j] -=5;
+      } else {
+        posY3[j] = -30;
+        if (j < 3) {
+          cloudActive[j + 1] = true; 
+        }
+        else if(j>=3){
+          stopped=true;
+          
+        }
+      }
+      drawCloud(320 + posX3, 0 + posY3[j], 25);
+    }
+  }
+  posX4+=10;
+  if (!visible1){
+    drawRoad(0+posX4);
+  }
+  if (stopped){
+    posX3-=10;
+    visible1=true;
+  }
+  
+
+  if(stopped||visible1){
+    push()
+    stroke("black");
+    strokeWeight(5);
+    line(0+posX3,300,100+posX3,300);
+    line(150+posX3,300,250+posX3,300);
+    line(300+posX3,300, 400+posX3, 300);
+    pop();
+  }
+  stroke("black");
+  line(0+posX3,200,400+posX3,200);
+  drawCar(100 + posX3, 90);
+  if (posX3<=-400){
+    left3=true;
+    
+  }
+}
+if(left3){
+  stroke("black")
+  if (posX5 > 20) {
+    posX5-=10;
+  } else if (posX5 <= 20 && posX5 > 0) {
+    posX5 = 0;
+    visible2=false;
+    
+  }
+
+  for (let j = 0; j < 4; j++) {
+    if (cloudActive1[j]) {
+      if (posY2[j] > -30) {
+        posY2[j] -=5;
+      } else {
+        posY2[j] = -30;
+        if (j < 3) {
+          cloudActive1[j + 1] = true; 
+        }
+        else if(j>=3){
+          stopped3=true;
+          
+        }
+      }
+      timer(320 + posX5, 0 + posY2[j], 25);
+    }
+  }
+  posX6+=10;
+  if (!visible2){
+    drawRoad(0+posX6);
+  }
+  if (stopped3){
+    posX5-=10;
+    visible2=true;
+  }
+  
+
+  if(stopped3||visible2){
+    push()
+    stroke("black");
+    strokeWeight(5);
+    line(0+posX5,300,100+posX5,300);
+    line(150+posX5,300,250+posX5,300);
+    line(300+posX5,300, 400+posX5, 300);
+    pop();
+  }
+  stroke("black");
+  line(0+posX5,200,400+posX5,200);
+  noFill();
+  beginShape();
+  curveVertex(300+posX5, 170); 
+  curveVertex(300+posX5, 170);
+  curveVertex(350+posX5, 200);
+  curveVertex(150+posX5, 300);
+  curveVertex(300+posX5, 350);
+  curveVertex(300+posX5, 350);
+  endShape();
+  drawCar(100 + posX5, 90);
+  drawBlock(250+posX5,320);
+  if (posX5<=-400){
+    left3=true;
+    
+  }
 }
 }
