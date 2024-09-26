@@ -402,7 +402,6 @@ function draw() {
 if(earthGreenLeft){
   if(!left){
     translate(+50,0);
-    }
     if(moveX<=0&&moveX>-500){
     drawCloudBig(200+moveX,50,100);
     for(let i = 0; i<xT.length; i++){
@@ -657,4 +656,5 @@ if(left3){
     left3=true;
     
   }
+}
 }
