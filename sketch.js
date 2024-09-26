@@ -25,10 +25,197 @@ let visible1=true;
 let visible2=true;
 let left3=false;
 let left4=false;
+let scaleCounter1=0;
+let scaleCounter2=0;
+let posX0=0;
+let posX7=450;
+let posB0=0;
+let sizeChange=0;
+let mouthx1=10;
+let mouthx2=10;
+let tearYpos=0;
+let mouthMove=false;
+let visibleTear=false;
+let earthGreyLeft=false;
+let earthGreenLeft=false;
+let startShine=false;
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(500, 400);
   frameRate(12);
 
+}
+function earthGrey(x,y,size,scaleP,mouth){
+  push();
+  translate(x,y);
+  scale(scaleP);
+  fill("grey");
+  ellipse(0,0,size,size);
+  fill("silver");
+  //first contenent
+  
+  beginShape();
+  vertex(-30,-40);
+  vertex(-20,-30);
+  vertex(-20,-40);
+  vertex(-10,-45);
+  vertex(0,-30);
+  vertex(10,-30);
+  vertex(20,-40);
+  vertex(30,-30);
+  vertex(40,-30);
+  vertex(30,-40);
+  vertex(20,-45);
+  vertex(10,-49);
+  vertex(0,-50);
+  vertex(-10,-49);
+  vertex(-20, -46);
+  endShape(CLOSE);
+  //second contenent
+  beginShape();
+  vertex(-40,-10);
+  vertex(-30,-20);
+  vertex(-10,-20);
+  vertex(10,10);
+  vertex(10,20);
+  vertex(0,30);
+  vertex(0,40);
+  vertex(-10,45);
+  vertex(-30,30);
+  vertex(-40,20);
+  vertex(-30,10);
+  vertex(-30,0);
+  endShape(CLOSE);
+  //third contenent
+  beginShape();
+  vertex(20,0);
+  vertex(30,-10);
+  vertex(40,-10);
+  vertex(45,0);
+  vertex(45,10);
+  vertex(40,20);
+  vertex(40,25);
+  vertex(30,20);
+  vertex(30,10);
+  endShape(CLOSE);
+  //eyes
+  push()
+  noFill();
+  strokeWeight(5);
+  beginShape();
+  vertex(-35,-10);
+  vertex(-25,0);
+  vertex(-15,0);
+  vertex(-5,-10);
+  endShape();
+  beginShape();
+  vertex(35,-10);
+  vertex(25,0);
+  vertex(15,0);
+  vertex(5,-10);
+  endShape();
+  //mouth
+  beginShape();
+  vertex(-25,mouth);
+  vertex(-15,10);
+  vertex(15,10);
+  vertex(25,mouth);
+  endShape();
+  pop();
+  pop();
+}
+function earthGreen(x,y,size,scaleP,mouth){
+  push();
+  translate(x,y);
+  scale(scaleP);
+  fill("blue");
+  ellipse(0,0,size,size);
+  fill("green");
+  //first contenent
+  
+  beginShape();
+  vertex(-30,-40);
+  vertex(-20,-30);
+  vertex(-20,-40);
+  vertex(-10,-45);
+  vertex(0,-30);
+  vertex(10,-30);
+  vertex(20,-40);
+  vertex(30,-30);
+  vertex(40,-30);
+  vertex(30,-40);
+  vertex(20,-45);
+  vertex(10,-49);
+  vertex(0,-50);
+  vertex(-10,-49);
+  vertex(-20, -46);
+  endShape(CLOSE);
+  //second contenent
+  beginShape();
+  vertex(-40,-10);
+  vertex(-30,-20);
+  vertex(-10,-20);
+  vertex(10,10);
+  vertex(10,20);
+  vertex(0,30);
+  vertex(0,40);
+  vertex(-10,45);
+  vertex(-30,30);
+  vertex(-40,20);
+  vertex(-30,10);
+  vertex(-30,0);
+  endShape(CLOSE);
+  //third contenent
+  beginShape();
+  vertex(20,0);
+  vertex(30,-10);
+  vertex(40,-10);
+  vertex(45,0);
+  vertex(45,10);
+  vertex(40,20);
+  vertex(40,25);
+  vertex(30,20);
+  vertex(30,10);
+  endShape(CLOSE);
+  //eyes
+  push()
+  noFill();
+  strokeWeight(5);
+  beginShape();
+  vertex(-35,-10);
+  vertex(-25,-20);
+  vertex(-15,-20);
+  vertex(-5,-10);
+  endShape();
+  beginShape();
+  vertex(35,-10);
+  vertex(25,-20);
+  vertex(15,-20);
+  vertex(5,-10);
+  endShape();
+  //mouth
+  beginShape();
+  vertex(-25,mouth);
+  vertex(-15,10);
+  vertex(15,10);
+  vertex(25,mouth);
+  endShape();
+  pop();
+  pop();
+}
+function tear(x,y){
+  push();
+  stroke("blue");
+  fill("blue");
+  triangle(x,y,x+10,y+30, x-10,y+30);
+  ellipse(x,y+30,20,20);
+  pop();
+}
+function drawShine(x,y,width,height){
+  push();
+  stroke("yellow");
+  fill("yellow");
+  ellipse(x,y,width,height);
+  pop();
 }
 function drawCloud(x, y, size) {
   noStroke();
@@ -163,85 +350,138 @@ function drawBlock(x,y){
   pop();
 }
 function draw() {
-  if(!left){
-  if(moveX<=0&&moveX>-500){
   background(225);
-  drawCloudBig(200+moveX,50,100);
-  for(let i = 0; i<xT.length; i++){
-    if(sizeT[i]<50){
-      yT[i]-=4;
-      sizeT[i]+=3;
-      drawCloud(xT[i]+moveX,yT[i],sizeT[i]);
-    }else{
-      yT[i]-=4;
-      drawCloud(xT[i]+moveX,yT[i],50);
-      if(sizeB[i]<175){
-        sizeB[i]+=2;
-        drawCloudBig(200+moveX,50,sizeB[i]);
+  if (!earthGreyLeft){
+    
+  if(sizeChange<400&&scaleCounter1<2.5){
+    sizeChange+=10;
+    scaleCounter1+=0.1;
+  }
+  if(scaleCounter1>=2.5&&mouthx1<20){
+    mouthx1++;
+  }
+  if (mouthx1>=20){
+    visibleTear=true;
+  }
+  earthGrey(250+posX0,200,100,scaleCounter1,mouthx1);
+  if(visibleTear&&tearYpos<70){
+    tearYpos+=5;
+    tear(325,200+tearYpos);
+  }else if(visibleTear&&tearYpos>=70){
+    posX0-=10;
+  }
+  if (posX0<=-450){
+    earthGreyLeft=true;
+  } 
+  }
+  if(earthGreyLeft){
+    if(posX7>0){
+      posX7-=10;
+    }
+    
+  if(posX7<=0&&mouthx2>0){
+    mouthx2--;
+    posX7=0;
+    startShine=true;
+    
+  }
+  if(startShine&&scaleCounter2<250){
+    scaleCounter2+=10;
+  }
+  if(scaleCounter2==250){
+    posX7-=10;
+  }
+  if(posX7<=-450){
+    earthGreenLeft=true;
+    
+  }
+  drawShine(250+posX7, 200,100+scaleCounter2,100+scaleCounter2);
+  earthGreen(250+posX7,200,100,2.5,mouthx2);
+
+}
+if(earthGreenLeft){
+  if(!left){
+    translate(+50,0);
+    }
+    if(moveX<=0&&moveX>-500){
+    drawCloudBig(200+moveX,50,100);
+    for(let i = 0; i<xT.length; i++){
+      if(sizeT[i]<50){
+        yT[i]-=4;
+        sizeT[i]+=3;
+        drawCloud(xT[i]+moveX,yT[i],sizeT[i]);
       }else{
-        drawCloudBig(200+moveX,50,sizeB[i]);
-        moveX-=2;
+        yT[i]-=4;
+        drawCloud(xT[i]+moveX,yT[i],50);
+        if(sizeB[i]<175){
+          sizeB[i]+=2;
+          drawCloudBig(200+moveX,50,sizeB[i]);
+        }else{
+          drawCloudBig(200+moveX,50,sizeB[i]);
+          moveX-=2;
+        }
       }
     }
+    
+    
+    stroke("black");
+    fill("black")
+    rect(0+moveX,350,400,50);
+    fill("brown");
+    rect(25+moveX, 150, 25, 200);
+    fill("grey");
+    beginShape();
+    vertex(145+moveX, 200);
+    vertex(175+moveX, 200);
+    vertex(190+moveX, 350);
+    vertex(135+moveX, 350);
+    endShape(CLOSE);
+    fill("silver");
+    beginShape();
+    vertex(155+moveX, 200);
+    vertex(165+moveX, 200);
+    vertex(180+moveX, 350);
+    vertex(145+moveX, 350);
+    endShape(CLOSE);
+    fill("grey");
+    beginShape();
+    vertex(75+moveX, 175);
+    vertex(125+moveX, 175);
+    vertex(150+moveX, 350);
+    vertex(50+moveX, 350);
+    endShape(CLOSE);
+    fill("silver");
+    beginShape();
+    vertex(90+moveX, 175);
+    vertex(110+moveX, 175);
+    vertex(135+moveX, 350);
+    vertex(65+moveX, 350);
+    endShape(CLOSE);
+    fill("gold");
+    rect(200+moveX, 300, 200, 50);
+    fill("red");
+    beginShape();
+    vertex(225+moveX, 250);
+    vertex(375+moveX, 250);
+    vertex(400+moveX, 300);
+    vertex(200+moveX, 300);
+    endShape(CLOSE);
+    line(213+moveX, 275, 388+moveX, 275);
+    fill("brown")
+    rect(283+moveX, 100, 25, 150);
+    rect(240+moveX, 100, 25, 150);
+    rect(326+moveX, 100, 25, 150);
+    if(moveX<=-500){
+      left=true;
+      console.log(left);
+      moveX=-500; 
+    }
   }
-  
-  
-  stroke("black");
-  fill("black")
-  rect(0+moveX,350,400,50);
-  fill("brown");
-  rect(25+moveX, 150, 25, 200);
-  fill("grey");
-  beginShape();
-  vertex(145+moveX, 200);
-  vertex(175+moveX, 200);
-  vertex(190+moveX, 350);
-  vertex(135+moveX, 350);
-  endShape(CLOSE);
-  fill("silver");
-  beginShape();
-  vertex(155+moveX, 200);
-  vertex(165+moveX, 200);
-  vertex(180+moveX, 350);
-  vertex(145+moveX, 350);
-  endShape(CLOSE);
-  fill("grey");
-  beginShape();
-  vertex(75+moveX, 175);
-  vertex(125+moveX, 175);
-  vertex(150+moveX, 350);
-  vertex(50+moveX, 350);
-  endShape(CLOSE);
-  fill("silver");
-  beginShape();
-  vertex(90+moveX, 175);
-  vertex(110+moveX, 175);
-  vertex(135+moveX, 350);
-  vertex(65+moveX, 350);
-  endShape(CLOSE);
-  fill("gold");
-  rect(200+moveX, 300, 200, 50);
-  fill("red");
-  beginShape();
-  vertex(225+moveX, 250);
-  vertex(375+moveX, 250);
-  vertex(400+moveX, 300);
-  vertex(200+moveX, 300);
-  endShape(CLOSE);
-  line(213+moveX, 275, 388+moveX, 275);
-  fill("brown")
-  rect(283+moveX, 100, 25, 150);
-  rect(240+moveX, 100, 25, 150);
-  rect(326+moveX, 100, 25, 150);
-  if(moveX<=-500){
-    left=true;
-    console.log(left);
-    moveX=-500; 
   }
 }
-}
+  
 if(left){
-  background(225);
+  //translate(+50,0);
     stroke("black");
     if (posX > 20) {
       posX -= 10;  
@@ -299,6 +539,7 @@ if(left){
     }
 }
 if(left2){
+  //translate(-50,0);
   stroke("black")
   if (posX3 > 20) {
     posX3-=10;
@@ -345,7 +586,7 @@ if(left2){
     pop();
   }
   stroke("black");
-  line(0+posX3,200,400+posX3,200);
+  line(0+posX3,200,500+posX3,200);
   drawCar(100 + posX3, 90);
   if (posX3<=-400){
     left3=true;
@@ -353,6 +594,7 @@ if(left2){
   }
 }
 if(left3){
+  //translate(+50,0);
   stroke("black")
   if (posX5 > 20) {
     posX5-=10;
@@ -399,7 +641,7 @@ if(left3){
     pop();
   }
   stroke("black");
-  line(0+posX5,200,400+posX5,200);
+  line(0+posX5,200,500+posX5,200);
   noFill();
   beginShape();
   curveVertex(300+posX5, 170); 
@@ -415,5 +657,4 @@ if(left3){
     left3=true;
     
   }
-}
 }
