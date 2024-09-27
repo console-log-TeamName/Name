@@ -10,6 +10,7 @@ let bubbleYPos8 = 1600;
 let bubbleYPos9 = 1800;
 let bubbleYPos10 = 2000;
 
+//defining a variable to make the fish animate (line 173)
 let fishX = 0;
 
 function setup() {
@@ -163,11 +164,12 @@ for (let i = 0; i < 10; i++) {
     bubbleXPos += 190;
 }
 
-
+//Creating the fish by calling the drawFish function
 drawFish (150, -100, 255,196,12);
 drawFish (-100, 210, 147,112,219);
 drawFish (200, 140, 250,128,114);
 
+//Added code to animate fish on screen
 function drawFish (x, y, color) {
     fishX ++;
     translate (x, y);
@@ -180,7 +182,5 @@ function drawFish (x, y, color) {
     bezierVertex (225 + fishX, 150, 200 + fishX, 180, 162 + fishX, 160);
     endShape (CLOSE);
     translate (-x, -y);
-}
-
-// drawFish();
+    }
 }

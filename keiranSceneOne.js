@@ -162,10 +162,12 @@ for (let i = 0; i < 10; i++) {
   bubbleXPos += 190;
 }
 
+//Drawing sick fish on screen
 drawFish (150, -100, 73,121,107);
 drawFish (-100, 210, 73,121,107);
 drawFish (200, 140, 73,121,107);
 
+//Creating and drawing trash on screen
 let trash1PosX = -200;
 let trash1PosY = -140;
 
