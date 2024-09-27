@@ -67,6 +67,37 @@ let tX1=460;
 let tX2=488;
 let tY1=94;
 let tY2=122;
+//Creating different starting positions for the bubbles
+let bubbleYPos1 = 200;
+let bubbleYPos2 = 400;
+let bubbleYPos3 = 600;
+let bubbleYPos4 = 800;
+let bubbleYPos5 = 1000;
+let bubbleYPos6 = 1200;
+let bubbleYPos7 = 1400;
+let bubbleYPos8 = 1600;
+let bubbleYPos9 = 1800;
+let bubbleYPos10 = 2000;
+
+let bubble2YPos1 = 200;
+let bubble2YPos2 = 400;
+let bubble2YPos3 = 600;
+let bubble2YPos4 = 800;
+let bubble2YPos5 = 1000;
+let bubble2YPos6 = 1200;
+let bubble2YPos7 = 1400;
+let bubble2YPos8 = 1600;
+let bubble2YPos9 = 1800;
+let bubble2YPos10 = 2000;
+let trashLeft1=false;
+let trashLeft2=false;
+let fishX = 0;
+let zpos=350;
+
+let termFinish=false;
+let ypos=175;
+let yposWater=0;//y- starting position of the water drop.
+let xpos=0;
 function setup() {
   createCanvas(500, 400);
   frameRate(12);
@@ -1099,6 +1130,77 @@ tX2-=7;
 tY1+=7;
 tY2+=7;
 }
+// Creating the function that will draw a fish, the user inputs the x and y coordinates to translate the position so multiple fish can be drawn, the also choose the color the fish will be filled to add some differentiation.
+function drawFish (x, y, color) {
+ 
+  translate (x, y);
+  beginShape ();
+  fill (color);
+  vertex (150, 150);
+  vertex (125, 125);
+  vertex (125, 170);
+  bezierVertex (175, 105, 200, 120, 225, 150);
+  bezierVertex (225, 150, 200, 180, 162, 160);
+  endShape (CLOSE);
+  translate (-x, -y);
+}
+
+// Creating the functions to draw trash in the animation, and fills it brown
+function drawTrash (x, y) {
+  translate (x, y);
+  beginShape ();
+  fill (128, 128, 128);
+  vertex (200, 200);
+  vertex (225, 225);
+  vertex (215, 230);
+  vertex (230, 250);
+  vertex (220, 270);
+  vertex (200, 270);
+  vertex (175, 285);
+  vertex (170, 270);
+  vertex (140, 250);
+  vertex (160, 230);
+  vertex (160, 200);
+  endShape (CLOSE);
+  translate (-x, -y);
+}
+
+// Creating functions to draw small and large bubbles 
+function drawSmallBubble (x, y) {
+  translate (x, y);
+  fill (85, 107, 47);
+  circle (200, 200, 10);
+  fill ("white");
+  circle (201, 199, 3);
+  translate (-x, -y);
+}
+
+function drawHealthySmallBubble (x, y) {
+  translate (x, y);
+  fill (231,254,255);
+  circle (200, 200, 10);
+  fill ("white");
+  circle (201, 199, 3);
+  translate (-x, -y);
+}
+
+function drawLargeBubble (x, y) {
+  translate (x, y);
+  fill (85, 107, 47);
+  circle (200, 200, 15);
+  fill ("white");
+  circle (203, 197, 3)
+  translate (-x, -y);
+}
+
+function drawHealthyLargeBubble (x, y) {
+  translate (x, y);
+  fill (231,254,255);
+  circle (200, 200, 15);
+  fill ("white");
+  circle (203, 197, 3)
+  translate (-x, -y);
+}
 function draw() {
   background(225);
   //first scene of intro
@@ -1507,5 +1609,420 @@ if(finish3){
   translate(-50,-300);
   translate(285,325)
   babyMacaw();
+}
+if(finish4){
+  translate(-270,-300);
+  background(128, 128, 0);
+
+  //Creating the loops that will draw bubbles and animate them to move on screen
+    let bubbleXPos = -251;
+    for (let i=0; i < 10; i++) {
+      drawSmallBubble (bubbleXPos, bubbleYPos1);
+      bubbleYPos1 --;
+      bubbleXPos += 100;
+    }
+  
+    bubbleXPos = -34;
+    for (let i=0; i <10; i++) {
+      drawSmallBubble (bubbleXPos, bubbleYPos2);
+      bubbleYPos2 --;
+      bubbleXPos += 117;
+  }
+  
+    bubbleXPos = -182;
+    for (let i=0; i < 10; i++) {
+      drawSmallBubble (bubbleXPos, bubbleYPos3);
+      bubbleYPos3 --;
+      bubbleXPos += 89;
+  }
+  
+    bubbleXPos = -28;
+    for (let i=0; i < 10; i++) {
+      drawSmallBubble (bubbleXPos, bubbleYPos4);
+      bubbleYPos4 --;
+      bubbleXPos += 60;
+  }
+  
+    bubbleXPos = -221;
+    for (let i=0; i < 10; i++) {
+      drawSmallBubble (bubbleXPos, bubbleYPos5);
+      bubbleYPos5 --;
+      bubbleXPos += 124;
+  }
+  
+    bubbleXPos = -200;
+    for (let i=0; i < 10; i++) {
+      drawSmallBubble (bubbleXPos, bubbleYPos6);
+      bubbleYPos6 --;
+      bubbleXPos += 140;
+  }
+  
+    bubbleXPos = -180;
+    for (let i=0; i < 10; i++) {
+      drawSmallBubble (bubbleXPos, bubbleYPos7);
+      bubbleYPos7 --;
+      bubbleXPos += 180;
+  }
+  
+    bubbleXPos = -120;
+    for (let i=0; i < 10; i++) {
+      drawSmallBubble (bubbleXPos, bubbleYPos8);
+      bubbleYPos8 --;
+      bubbleXPos += 188;
+  }
+  
+    bubbleXPos = -80;
+    for (let i=0; i < 10; i++) {
+      drawSmallBubble (bubbleXPos, bubbleYPos9);
+      bubbleYPos9 --;
+      bubbleXPos += 210;
+  }
+  
+    bubbleXPos = -210;
+    for (let i=0; i < 10; i++) {
+      drawSmallBubble (bubbleXPos, bubbleYPos10);
+      bubbleYPos10 --;
+      bubbleXPos += 240;
+  }
+  
+  //Drawing the large bubbles using the same for loop method
+  bubbleXPos = -190;
+  for (let i = 0; i < 10; i++) {
+    drawLargeBubble (bubbleXPos, bubbleYPos1);
+    bubbleYPos1 --;
+    bubbleXPos += 280;
+  }
+  
+  bubbleXPos = -190;
+  for (let i = 0; i < 10; i++) {
+    drawLargeBubble (bubbleXPos, bubbleYPos2);
+    bubbleYPos2 --;
+    bubbleXPos += 83;
+  }
+  
+  bubbleXPos = -190;
+  for (let i = 0; i < 10; i++) {
+    drawLargeBubble (bubbleXPos, bubbleYPos3);
+    bubbleYPos3 --;
+    bubbleXPos += 142;
+  }
+  
+  bubbleXPos = -190;
+  for (let i = 0; i < 10; i++) {
+    drawLargeBubble (bubbleXPos, bubbleYPos4);
+    bubbleYPos4 --;
+    bubbleXPos += 56;
+  }
+  
+  bubbleXPos = -190;
+  for (let i = 0; i < 10; i++) {
+    drawLargeBubble (bubbleXPos, bubbleYPos5);
+    bubbleYPos5 --;
+    bubbleXPos += 190;
+  }
+  
+  bubbleXPos = -190;
+  for (let i = 0; i < 10; i++) {
+    drawLargeBubble (bubbleXPos, bubbleYPos6);
+    bubbleYPos6 --;
+    bubbleXPos += 190;
+  }
+  
+  bubbleXPos = -190;
+  for (let i = 0; i < 10; i++) {
+    drawLargeBubble (bubbleXPos, bubbleYPos7);
+    bubbleYPos7 --;
+    bubbleXPos += 190;
+  }
+  
+  bubbleXPos = -190;
+  for (let i = 0; i < 10; i++) {
+    drawLargeBubble (bubbleXPos, bubbleYPos8);
+    bubbleYPos8 --;
+    bubbleXPos += 190;
+  }
+  
+  bubbleXPos = -190;
+  for (let i = 0; i < 10; i++) {
+    drawLargeBubble (bubbleXPos, bubbleYPos9);
+    bubbleYPos9 --;
+    bubbleXPos += 190;
+  }
+  
+  bubbleXPos = -190;
+  for (let i = 0; i < 10; i++) {
+    if (bubbleYPos10>0){
+    drawLargeBubble (bubbleXPos, bubbleYPos10);
+    bubbleYPos10 --;
+    bubbleXPos += 190;
+  }else if(bubbleYPos10<=2000){
+    bubbleYPos10=0;
+    trashLeft1=true;
+  }
+  
+  }
+  
+  
+  //Drawing sick fish on screen
+  drawFish (150, -100, 73,121,107);
+  drawFish (-100, 210, 73,121,107);
+  drawFish (200, 140, 73,121,107);
+  
+  //Creating and drawing trash on screen
+  let trash1PosX = -200;
+  let trash1PosY = -140;
+  
+  trash1PosX = -120;
+  trash1PosY = -140;
+  drawTrash (trash1PosX, trash1PosY)
+  
+  let trash2PosX = -230;
+  let trash2PosY = -100;
+  drawTrash (130, -111);
+  
+  
+  let trash3PosX = 40;
+  let trash3PosY = 80;
+  drawTrash (trash3PosX, trash3PosY);
+}
+if(trashLeft1){
+  background(0,206,209);
+
+//Creating the loops that will draw bubbles and animate them to move on screen
+let bubble2XPos = -251;
+for (let i=0; i < 10; i++) {
+    drawHealthySmallBubble (bubble2XPos, bubble2YPos1);
+    bubble2YPos1 --;
+    bubble2XPos += 100;
+}
+
+bubble2XPos = -34;
+for (let i=0; i <10; i++) {
+    drawHealthySmallBubble (bubble2XPos, bubble2YPos2);
+    bubble2YPos2 --;
+    bubble2XPos += 117;
+}
+
+bubble2XPos = -182;
+for (let i=0; i < 10; i++) {
+    drawHealthySmallBubble (bubble2XPos, bubble2YPos3);
+    bubble2YPos3 --;
+    bubble2XPos += 89;
+}
+
+bubble2XPos = -28;
+for (let i=0; i < 10; i++) {
+    drawHealthySmallBubble (bubble2XPos, bubble2YPos4);
+    bubble2YPos4 --;
+    bubble2XPos += 60;
+}
+
+bubble2XPos = -221;
+for (let i=0; i < 10; i++) {
+    drawHealthySmallBubble (bubble2XPos, bubble2YPos5);
+    bubble2YPos5 --;
+    bubble2XPos += 124;
+}
+
+bubble2XPos = -200;
+for (let i=0; i < 10; i++) {
+    drawHealthySmallBubble (bubble2XPos, bubble2YPos6);
+    bubble2YPos6 --;
+    bubble2XPos += 140;
+}
+
+bubble2XPos = -180;
+for (let i=0; i < 10; i++) {
+    drawHealthySmallBubble (bubble2XPos, bubble2YPos7);
+    bubble2YPos7 --;
+    bubble2XPos += 180;
+}
+
+bubble2XPos = -120;
+for (let i=0; i < 10; i++) {
+    drawHealthySmallBubble (bubble2XPos, bubble2YPos8);
+    bubble2YPos8 --;
+    bubble2XPos += 188;
+}
+
+bubble2XPos = -80;
+for (let i=0; i < 10; i++) {
+    drawHealthySmallBubble (bubble2XPos, bubble2YPos9);
+    bubble2YPos9 --;
+    bubble2XPos += 210;
+}
+
+bubble2XPos = -210;
+for (let i=0; i < 10; i++) {
+    drawHealthySmallBubble (bubble2XPos, bubble2YPos10);
+    bubble2YPos10 --;
+    bubble2XPos += 240;
+}
+
+//Drawing the large bubbles using the same for loop method
+bubble2XPos = -190;
+for (let i = 0; i < 10; i++) {
+    drawHealthyLargeBubble (bubble2XPos, bubble2YPos1);
+    bubble2YPos1 --;
+    bubble2XPos += 280;
+}
+
+bubble2XPos = -190;
+for (let i = 0; i < 10; i++) {
+    drawHealthyLargeBubble (bubble2XPos, bubble2YPos2);
+    bubble2YPos2 --;
+    bubble2XPos += 83;
+}
+
+bubble2XPos = -190;
+for (let i = 0; i < 10; i++) {
+    drawHealthyLargeBubble (bubble2XPos, bubble2YPos3);
+    bubble2YPos3 --;
+    bubble2XPos += 142;
+}
+
+bubble2XPos = -190;
+for (let i = 0; i < 10; i++) {
+    drawHealthyLargeBubble (bubble2XPos, bubble2YPos4);
+    bubble2YPos4 --;
+    bubble2XPos += 56;
+}
+
+bubble2XPos = -190;
+for (let i = 0; i < 10; i++) {
+    drawHealthyLargeBubble (bubble2XPos, bubble2YPos5);
+    bubble2YPos5 --;
+    bubble2XPos += 190;
+}
+
+bubble2XPos = -190;
+for (let i = 0; i < 10; i++) {
+    drawHealthyLargeBubble (bubble2XPos, bubble2YPos6);
+    bubble2YPos6 --;
+    bubble2XPos += 190;
+}
+
+bubble2XPos = -190;
+for (let i = 0; i < 10; i++) {
+    drawHealthyLargeBubble (bubble2XPos, bubble2YPos7);
+    bubble2YPos7 --;
+    bubble2XPos += 190;
+}
+
+bubble2XPos = -190;
+for (let i = 0; i < 10; i++) {
+    drawHealthyLargeBubble (bubble2XPos, bubble2YPos8);
+    bubble2YPos8 --;
+    bubble2XPos += 190;
+}
+//Creating the fish by calling the drawFish function
+draw2Fish (150, -100, 255,196,12);
+draw2Fish (-100, 210, 147,112,219);
+draw2Fish (200, 140, 250,128,114);
+
+//Added code to animate fish on screen
+function draw2Fish (x, y, color) {
+  if (fishX<200){
+    fishX ++;
+    translate (x, y);
+    beginShape ();
+    fill (color);
+    vertex (150 + fishX, 150);
+    vertex (125 + fishX, 125);
+    vertex (120 + fishX, 170);
+    bezierVertex (175 + fishX, 105, 200 + fishX, 120, 225 + fishX, 150);
+    bezierVertex (225 + fishX, 150, 200 + fishX, 180, 162 + fishX, 160);
+    endShape (CLOSE);
+    translate (-x, -y);
+    }else if(fishX>=200){
+      trashLeft2=true;
+    }
+}
+}
+if (trashLeft2){
+  background("grey");
+  //terometer
+  if(!termFinish){
+  fill("white");
+  rect(180,100,50,250);
+  
+  fill("red");
+  rect(180,zpos,50,20);
+  
+  line(180,120,230,120);
+  line(180,150,230,150);
+  line(180,180,230,180);
+  line(180,210,230,210);
+  line(180,240,230,240);
+  line(180,270,230,270);
+  line(180,300,230,300);
+  line(180,330,230,330);
+  
+  
+  if(zpos>120){
+    zpos-=2;
+  }else if(zpos<=120){
+    zpos=120;
+    termFinish=true;
+  }
+}
+  if (termFinish){
+    background("grey");
+    beginShape(); //mountain
+      
+    fill(50,100,150);
+    vertex(200.125);
+    vertex(173,175);
+    vertex(150,300);
+    vertex(100,325);
+    
+    vertex(100,285); //side top
+    vertex(50,350);
+    vertex(45,400);
+    
+    vertex(350,400);
+    vertex(325,350);
+    vertex(300,300);
+    vertex(250,250);
+    vertex(250,200);
+    vertex(250,150);
+      //top oif the mountain
+    endShape();
+      
+      beginShape(); //top of the mountain - ice.
+      fill("white");
+      vertex(173,175);
+      vertex(250,150);
+      vertex(220,50); 
+      endShape();
+  
+    
+            // water drops positions and fill up them blue funcion.
+      fill("blue");
+      circle(xpos+155,ypos+100,10);
+      circle(xpos+100,ypos+175,10);
+      circle(xpos+200,ypos+150);
+      circle(xpos+150,ypos+150,10);
+      circle(xpos+200,ypos-50,10);
+      circle(xpos+215,ypos-25,10);
+      circle(xpos+210,ypos,10);
+      circle(xpos+220,ypos-25,10);
+      circle(xpos+125,ypos+200,10);
+      ypos-=-2;
+      xpos=1;
+      
+      fill("yellow");         // sun ? 
+      circle(25,25,50);
+      line(50,25,100,100);
+      line(10,25,25,50);
+      
+      fill("blue");
+       if(yposWater<200){
+      yposWater+=2;
+      }else if(yposWater>=200){
+        yposWater=200;
+      }
+      square(0,400-yposWater,500);
+  }
 }
 }
