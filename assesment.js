@@ -1,4 +1,4 @@
-zpos=350;
+let zpos=350;
 
 let termFinish=false;
 let ypos=175;
