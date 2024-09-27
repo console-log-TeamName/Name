@@ -39,6 +39,27 @@ let visibleTear=false;
 let earthGreyLeft=false;
 let earthGreenLeft=false;
 let startShine=false;
+let cloudMove=0;
+let cloudMove2=0;
+let finish2=false;
+let finish1=false;
+let y = 0;
+let cloudMove3=0;
+let cloudMove4=0;
+let finish3=false;
+let finish4=false;
+let x = 30;
+let leftHit = true;
+let rightHit = false;
+let width = 50;
+let y1 = 50;
+let seedY = 30;
+let seedOnScreen = false;
+
+let tX1=460;
+let tX2=488;
+let tY1=94;
+let tY2=122;
 function setup() {
   createCanvas(500, 400);
   frameRate(12);
@@ -349,6 +370,724 @@ function drawBlock(x,y){
   rect(x, y+10, 100, 20);
   pop();
 }
+function backGround(){
+  fill(11,66,5);
+  rect(0,250,500,150);
+}
+
+function treePlacement (){
+translate(200,-120);
+  tree2();
+  translate(-200,120);
+  translate(100,-120);
+  tree2();
+  translate(-100,120);
+  translate(0,-120);
+  tree2();
+  translate(0,120);
+  translate(-100,-120);
+  tree2();
+  translate(100,120);
+  translate(-200,-120);
+  tree2();
+  translate(200,120);
+  translate(250,-100);
+  tree1();
+  translate(-250,100);
+  translate(150,-100);
+  tree1();
+  translate(-150,100);
+  translate(50,-100);
+  tree1();
+  translate(-50,100);
+  translate(-50,-100);
+  tree1();
+  translate(50,100);
+  translate(-150,-100);
+  tree1();
+  translate(150,100);
+  translate(-250,-100);
+  tree1();
+  translate(250,100);
+}
+
+function cloud1(move){
+ stroke(255,255,255)
+ fill(255,255,255)
+ circle(80+move,10,20);
+ circle(80+move,30,20);
+ circle(95+move,10,20);
+ circle(95+move,30,20);
+ circle(106+move,20,20);
+ circle(90+move,25,20);
+ circle(70+move,20,20);
+}
+
+function cloud2(move){
+ stroke(255,255,255);
+ fill(255,255,255);
+ circle(-95+move,40,20);
+ circle(-95+move,60,20);
+ circle(-80+move,40,20);
+ circle(-80+move,60,20);
+ circle(-70+move,50,20);
+ circle(-85+move,55,20);
+ circle(-105+move,50,20);
+}
+
+function sun2(){
+ stroke(230,200,30);
+ fill(230,200,30);
+ circle(445,40,60);
+ stroke(0,0,0);
+ fill(0,0,0);
+ circle(430,30,10);
+ circle(460,30,10);
+ ellipse(445,50,30,20);
+ rect(429,40,31,10)
+}
+function sun1(){
+ 
+stroke(230,200,30);
+fill(230,200,30);
+circle(445,40,60);
+
+}
+function tree1(){
+ stroke(0,0,0);
+ fill(43,21,11);
+ rect(235,320,30,50);
+ fill(5,41,3);
+ triangle(200,345,300,345,250,270);
+ triangle(200,295,300,295,250,220);
+ triangle(200,245,300,245,250,170);
+}
+
+function tree2(){
+ stroke(0,0,0);
+ fill(43,21,11);
+ rect(235,320,30,50);
+ fill(4,26,1);
+ triangle(200,345,300,345,250,270);
+ triangle(200,295,300,295,250,220);
+ triangle(200,245,300,245,250,170);
+}
+
+function babyJaguar(){
+// back leg left //
+fill(99,76,49);
+beginShape();
+vertex(12,25);
+vertex(12,35);
+vertex(17,35);
+endShape();
+// back leg right //
+fill(99,76,49);
+beginShape();
+vertex(25,30);
+vertex(25,35);
+vertex(30,35);
+vertex(30,30);
+endShape();
+// tail //
+fill(166,125,78)
+beginShape();
+vertex(38,20);
+vertex(43,25);
+vertex(45,30);
+vertex(46,33);
+vertex(43,34);
+vertex(40,27);
+endShape();
+// body //
+fill(166,125,78)
+beginShape();
+vertex(10,17);
+vertex(10,28);
+vertex(15,30);
+vertex(30,30);
+vertex(40,30);
+vertex(40,20);
+vertex(35,17);
+vertex(20,15);
+vertex(10,17);
+endShape();
+// front left leg //
+fill(166,125,78)
+beginShape();
+vertex(15,25);
+vertex(15,37);
+vertex(23,37)
+vertex(23,25)
+endShape();
+// front right leg //
+fill(166,125,78)
+beginShape();
+vertex(30,25);
+vertex(30,37);
+vertex(38,37);
+vertex(38,25);
+endShape();
+// snout //
+fill(166,125,78)
+beginShape();
+vertex(10,15)
+vertex(10,18)
+vertex(20,18)
+vertex(20,15)
+endShape();
+// head //
+fill(166,125,78)
+beginShape();
+vertex(0,5);
+vertex(5,0);
+vertex(10,5);
+vertex(20,5);
+vertex(25,0);
+vertex(30,5);
+vertex(25,10);
+vertex(25,15);
+vertex(20,17);
+vertex(20,13);
+vertex(20,17);
+vertex(15,15);
+vertex(10,17);
+vertex(10,13);
+vertex(10,17);
+vertex(5,15);
+vertex(5,10);
+vertex(0,5);
+endShape();
+line(15,15,15,13);
+fill(0,0,0);
+ellipse(15,12,3,2);
+fill(255,255,255);
+circle(10,10,4);
+circle(20,10,4);
+fill(0,0,0);
+circle(11,10,2);
+circle(19,10,2);
+
+}
+
+function babyMacaw(){
+fill(130,86,59);
+ellipse(40,40,45,20);
+fill(209,170,146)
+ellipse(40,30,10,15);
+ellipse(30,35,10,15);
+ellipse(50,35,10,15);
+}
+function macawOne(){
+ 
+// backfoot //
+beginShape();
+
+fill(61,62,66);
+vertex(25,45);
+vertex(25,53);
+vertex(20,53);
+vertex(15,57);
+vertex(25,56);
+vertex(30,55);
+vertex(28,53);
+vertex(28,45);
+vertex(25,45);
+
+endShape();
+
+// backfoot //
+beginShape();
+
+fill(61,62,66);
+vertex(35,45);
+vertex(35,55);
+vertex(30,55);
+vertex(25,58);
+vertex(40,58);
+vertex(38,55);
+vertex(38,45);
+vertex(35,45);
+
+endShape();
+
+// backleg //
+beginShape()
+
+fill(15,27,61);
+vertex(17,38);
+vertex(25,50);
+vertex(40,45)
+
+endShape();
+
+// body //
+beginShape();
+
+fill(25,45,99)
+vertex(10,5);
+vertex(10,30);
+vertex(12,35);
+vertex(15,37);
+vertex(20,40);
+vertex(25,45);
+vertex(30,50);
+vertex(35,50);
+vertex(40,47);
+vertex(45,45);
+vertex(70,45);
+vertex(65,40);
+vertex(30,20);
+vertex(25,5);
+vertex(20,0);
+vertex(15,0);
+vertex(10,5);
+
+endShape()
+
+// wing //
+beginShape()
+
+vertex(25,17);
+vertex(35,17);
+vertex(55,35);
+vertex(40,35);
+vertex(23,25);
+vertex(23,25);
+vertex(25,17);
+
+endShape();
+
+// face //
+beginShape();
+
+fill(148,142,24)
+vertex(10,7);
+vertex(10,5);
+vertex(15,4);
+vertex(20,5);
+vertex(22,10);
+vertex(20,15);
+vertex(15,18);
+vertex(10,20);
+vertex(10,7);
+
+endShape();
+
+// topbeak //
+beginShape();
+
+fill(61,62,66)
+vertex(10,6);
+vertex(5,8);
+vertex(0,10);
+vertex(0,19);
+vertex(5,15);
+vertex(10,15);
+vertex(12,10);
+vertex(10,6);
+
+endShape();
+
+// bottombeak //
+beginShape();
+
+fill(61,62,66)
+vertex(5,15);
+vertex(7,20);
+vertex(10,20);
+vertex(12,15);
+vertex(10,12);
+vertex(5,15);
+
+endShape();
+
+fill(255,255,255);
+circle(15,10,5);
+fill(0,0,0);
+circle(14,10,2);
+
+} 
+
+function jaguarOne(){
+ // tail //
+ beginShape();
+ 
+ fill(166,125,78)
+ vertex(85,35);
+ vertex(90,33);
+ vertex(95,33);
+ vertex(100,40);
+ vertex(100,60);
+ vertex(105,65);
+ vertex(110,68);
+ vertex(110,72);
+ vertex(100,70);
+ vertex(95,65);
+ vertex(90,55);
+ vertex(90,45);
+ 
+ endShape();
+ 
+ //back leg right //
+ beginShape();
+ 
+ fill(99, 76, 49);
+ vertex(61,55);
+ vertex(58,75);
+ vertex(75,75);
+ vertex(75,50);
+ 
+ endShape();
+ 
+ // back leg left //
+ beginShape();
+ 
+ fill(99, 76, 49);
+ vertex(10,50);
+ vertex(9,80);
+ vertex(20,83);
+ vertex(25,60);
+ 
+ endShape();
+ 
+ // body //
+ beginShape();
+ 
+ fill(166,125,78)
+ vertex(10,30);
+ vertex(9,45);
+ vertex(9,50);
+ vertex(10,55);
+ vertex(20,60);
+ vertex(40,60);
+ vertex(55,60);
+ vertex(70,55);
+ vertex(68,65);
+ vertex(67,80);
+ vertex(83,80);
+ vertex(90,50);
+ vertex(90,40);
+ vertex(80,30);
+ vertex(65,27);
+ vertex(45,30);
+ vertex(10,30);
+ 
+ endShape();
+ 
+ fill(0,0,0);
+ circle(45,35,3);
+ circle(50,31,3);
+ circle(58,35,3);
+ circle(65,31,3);
+ circle(70,35,3);
+ circle(75,31,3);
+ circle(110,70,3);
+ 
+ // front leg //
+ beginShape();
+ 
+ fill(166,125,78)
+ vertex(25,52);
+ vertex(17,85);
+ vertex(20,89);
+ vertex(35,85);
+ vertex(40,60);
+ vertex(40,55);
+ 
+ endShape();
+ 
+ // head //
+ beginShape();
+ 
+ fill(166,125,78)
+ vertex(5,0);
+ vertex(15,5);
+ vertex(30,4);
+ vertex(43,5);
+ vertex(50,0);
+ vertex(55,5);
+ vertex(47,17);
+ vertex(48,20);
+ vertex(45,30);
+ vertex(35,35);
+ vertex(37,30);
+ vertex(36,26);
+ vertex(37,30);
+ vertex(35,35);
+ vertex(32,40);
+ vertex(20,40);
+ vertex(20,35);
+ vertex(26,31);
+ vertex(26,28);
+ vertex(26,31);
+ vertex(35,35);
+ vertex(26,31);
+ vertex(20,35);
+ vertex(15,30);
+ vertex(17,26);
+ vertex(15,30);
+ vertex(20,35);
+ vertex(15,35);
+ vertex(5,25);
+ vertex(5,15);
+ vertex(2,10);
+ vertex(0,5);
+ vertex(5,0);
+ 
+ endShape();
+ 
+ // head details //
+ fill(255,255,255);
+ circle(18,19,5);
+ circle(34,19,5);
+ fill(0,0,0);
+ ellipse(26,25,7,5);
+ circle(19,19,3);
+ circle(33,19,3);
+ circle(15,10,3);
+ circle(20,7,3);
+ circle(35,10,3);
+ circle(29,7,3);
+ circle(24,9,3);
+ circle(25,14,3);
+ 
+
+}
+function logPlacement (){
+translate(200,-120);
+    log2();
+    translate(-200,120);
+    translate(100,-120);
+    log2();
+    translate(-100,120);
+    translate(0,-120);
+    log2();
+    translate(0,120);
+    translate(-100,-120);
+    log2();
+    translate(100,120);
+    translate(-200,-120);
+    log2();
+    translate(200,120);
+    translate(250,-100);
+    log1();
+    translate(-250,100);
+    translate(150,-100);
+    log1();
+    translate(-150,100);
+    translate(50,-100);
+    log1();
+    translate(-50,100);
+    translate(-50,-100);
+    log1();
+    translate(50,100);
+    translate(-150,-100);
+    log1();
+    translate(150,100);
+    translate(-250,-100);
+    log1();
+    translate(250,100);
+}
+function sun3(){
+stroke(230,200,30);
+fill(230,200,30);
+circle(445,40,60);
+fill(0,0,0);
+stroke(0,0,0);
+ellipse(445,50,30,14);
+rect(430,50,30,7)
+circle(430,30,10);
+circle(460,30,10);
+}
+function sun4(){
+stroke(230,200,30);
+fill(230,200,30);
+circle(445,40,60);
+fill(0,0,0);
+stroke(0,0,0);
+rect(430,50,30,5)
+circle(430,40,10);
+circle(460,40,10);
+}
+function log1(){
+stroke(0,0,0);
+fill(43,21,11);
+rect(235,320,30,50);
+}
+
+function log2(){
+stroke(0,0,0);
+fill(43,21,11);
+rect(235,320,30,50);
+}
+
+function ghostJaguar(){
+fill(255,255,255,200);
+stroke(0,0,0,200);
+strokeWeight(2);
+// body //
+beginShape();
+vertex(20,60+y);
+vertex(10,35+y);
+vertex(5,25+y);
+vertex(7,15+y);
+vertex(10,10+y);
+vertex(15,5+y);
+vertex(20,4+y);
+vertex(25,5+y);
+vertex(30,10+y);
+vertex(33,15+y);
+vertex(35,25+y);
+vertex(30,35+y);
+vertex(20,60+y);
+endShape();
+// face //
+beginShape();
+vertex(14,27+y);
+vertex(14,30+y);
+vertex(17,32+y);
+vertex(20,27+y);
+vertex(20,30+y);
+vertex(20,27+y);
+vertex(24,32+y);
+vertex(26,30+y);
+vertex(26,27+y);
+vertex(26,30+y);
+vertex(24,32+y);
+vertex(24,34+y);
+vertex(21,34+y);
+vertex(17,34+y);
+vertex(17,32+y);
+// nose //
+ellipse(20,25+y,4,2)
+endShape();
+// eye left //
+beginShape();
+vertex(14,17+y);
+vertex(17,19+y);
+vertex(21,17+y);
+endShape();
+// eye right //
+beginShape();
+vertex(24,17+y);
+vertex(27,19+y);
+vertex(31,17+y);
+endShape();
+// halo //
+strokeWeight(4);
+stroke(176,129,53,200);
+fill(0,0,0,0);
+ellipse(20,0+y,25,10);
+// ghost float //
+y--
+}
+
+function ghostMacaw(){
+strokeWeight(2);
+// body //
+fill(255,255,255,200);
+stroke(0,0,0,200);
+beginShape();
+vertex(20,60+y);
+vertex(10,35+y);
+vertex(5,25+y);
+vertex(7,15+y);
+vertex(10,10+y);
+vertex(15,5+y);
+vertex(20,4+y);
+vertex(25,5+y);
+vertex(30,10+y);
+vertex(33,15+y);
+vertex(35,25+y);
+vertex(30,35+y);
+vertex(20,60+y);
+endShape();
+// eye left //
+beginShape();
+vertex(14,15+y);
+vertex(17,17+y);
+vertex(21,15+y);
+endShape();
+// eye right //
+beginShape();
+vertex(24,15+y);
+vertex(27,17+y);
+vertex(31,15+y);
+endShape();
+// face //
+beginShape();
+vertex(20,26+y);
+vertex(20,20+y);
+vertex(14,21+y);
+vertex(13,25+y);
+vertex(13,30+y);
+vertex(17,26+y);
+vertex(20,26+y);
+vertex(20,31+y);
+vertex(18,31+y);
+vertex(16,27+y);
+endShape();
+// halo //
+strokeWeight(4);
+stroke(176,129,53,200);
+fill(0,0,0,0);
+ellipse(20,0+y,25,10);
+y--
+}
+function seedPacket(){
+
+if (x <= 30){
+     leftHit = true;
+     rightHit = false;
+} 
+if(x >= (90 - width)){
+     leftHit = false;
+     rightHit = true;
+}
+
+if (leftHit){
+ x+=3;
+}else if(rightHit){
+ x-=3;
+}
+fill(43,21,11);
+stroke(0,0,0);
+rect(x,0,width,70);
+fill(29, 66, 15);
+rect(x,15,width,40)
+
+}
+
+function seedSpawner(){
+
+stroke(0,0,0)
+fill(110,76,50)
+ circle(65,0+y1,15);
+ circle(55,-60+y1,15);
+ circle(65,-120+y1,15);
+ circle(55,-180+y1,15);
+ y1+=5;
+
+}
+
+function survailance(){
+fill(100,100,100);
+circle(490,100,50);
+fill(50,50,50);
+circle(474,108,10);
+rect(490,70,20,60);
+}
+
+function light(){
+fill(250,13,5,100)
+stroke(250,13,5,50)
+triangle (tX1,tY1,474,108,tX2,tY2)
+tX1-=7;
+tX2-=7;
+tY1+=7;
+tY2+=7;
+}
 function draw() {
   background(225);
   if (!earthGreyLeft){
@@ -480,7 +1219,6 @@ if(earthGreenLeft){
 }
   
 if(left){
-  //translate(+50,0);
     stroke("black");
     if (posX > 20) {
       posX -= 10;  
@@ -538,7 +1276,6 @@ if(left){
     }
 }
 if(left2){
-  //translate(-50,0);
   stroke("black")
   if (posX3 > 20) {
     posX3-=10;
@@ -593,8 +1330,7 @@ if(left2){
   }
 }
 if(left3){
-  //translate(+50,0);
-  stroke("black")
+   stroke("black")
   if (posX5 > 20) {
     posX5-=10;
   } else if (posX5 <= 20 && posX5 > 0) {
@@ -653,8 +1389,110 @@ if(left3){
   drawCar(100 + posX5, 90);
   drawBlock(250+posX5,320);
   if (posX5<=-400){
-    left3=true;
+    left4=true;
     
   }
+}
+if(left4){
+  background(105, 168, 245);
+  if(!finish1){
+  backGround();
+  sun1();
+  if(cloudMove2<650){
+    cloudMove2+=7;
+  }else if (cloudMove2>=650){
+    cloudMove2=650;
+    finish1=true;
+  }
+  cloud1(cloudMove2);
+  cloud2(cloudMove2);
+ 
+  treePlacement();
+  
+  fill(43,21,11)
+  rect(350,300,60,70)  
+  ellipse(380,300,60,20)
+    
+  translate(0,0);
+  translate(100,250);
+  jaguarOne();
+  translate(-100,-250);
+  translate(350,250);
+  macawOne();
+  translate(-350,-250);
+  }
+}
+if(finish1){
+  backGround();
+  sun2();
+  if(cloudMove<650){
+    cloudMove+=7;
+  }else if (cloudMove>=650){
+    cloudMove=650;
+    finish2=true;
+  }
+  cloud1(cloudMove);
+  cloud2(cloudMove);
+  treePlacement();
+  fill(43,21,11)
+  rect(350,300,60,70)  
+  ellipse(380,300,60,20)
+  translate(0,0);
+  translate(100,250);
+  jaguarOne();
+  translate(-100,-250);
+  translate(350,250);
+  macawOne();
+  translate(-350,-250);
+  translate(50,300);
+  babyJaguar();
+  translate(-50,-300);
+  translate(285,325)
+  babyMacaw();
+}
+if(finish2){
+  translate(-287,-325);
+  strokeWeight(2);
+  background(105, 168, 245);
+  backGround();
+  sun3();
+  if(cloudMove3<650){
+    cloudMove3+=7;
+  }else if (cloudMove3>=650){
+    cloudMove3=650;
+    finish3=true;
+  }
+  cloud1(cloudMove3);
+  cloud2(cloudMove3);
+  logPlacement();
+  fill(43,21,11);
+  stroke(0,0,0)
+  rect(350,300,60,70);  
+  ellipse(380,300,60,20);
+  translate(0,0);
+  translate(70,300);
+  ghostJaguar();
+  translate(-70,-300);
+  translate(357,225);
+  ghostMacaw();
+  translate(-357,-225);
+}
+if(finish3){
+  if(cloudMove4<650){
+    cloudMove4+=7;
+  }else if (cloudMove4=650){
+    cloudMove4=650;
+    finish4=true;
+  }
+  strokeWeight(2);
+  background(105, 168, 245);
+  backGround();
+  sun4();
+  cloud1(cloudMove4);
+  cloud2(cloudMove4);
+  seedSpawner();
+  seedPacket();
+  survailance();
+  light();
 }
 }
