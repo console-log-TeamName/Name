@@ -1,4 +1,5 @@
-let sizeT=[1,1,1,1,1,1];
+//variables for steam function
+let sizeT=[1,1,1,1,1,1]; 
 let yT=[155, 180, 210, 100, 100, 100];
 let xT=[38, 100, 160, 246, 296, 339];
 let sizeB=[100,100,100, 100, 100, 100];
@@ -7,13 +8,23 @@ let visible = false;
 let scaleFactor = 1.0;
 let posX=400;
 let posX2=400;
+let posX3 = 400;
+let posX4=0;
 let posX5=400;
 let posX6=0;
 let angle =0;
+//vars for scenes control 
 let left = false;
 let left2=false;
-let posX3 = 400;
-let posX4=0;
+let visible2=true;
+let left3=false;
+let left4=false;
+let earthGreyLeft=false;
+let earthGreenLeft=false;
+let finish2=false;
+let finish1=false;
+let finish3=false;
+let finish4=false;
 let posY3 = [150, 150, 150];
 let posY2 = [150, 150, 150];
 let cloudActive = [true, false, false]; 
@@ -22,9 +33,7 @@ let stopped=false;
 let stopped2=false;
 let stopped3=false;
 let visible1=true;
-let visible2=true;
-let left3=false;
-let left4=false;
+//variables for the grey and green earth animation(veronika)
 let scaleCounter1=0;
 let scaleCounter2=0;
 let posX0=0;
@@ -33,29 +42,27 @@ let posB0=0;
 let sizeChange=0;
 let mouthx1=10;
 let mouthx2=10;
+let startShine=false;
+//var for tear animation(veronika)
 let tearYpos=0;
 let mouthMove=false;
 let visibleTear=false;
-let earthGreyLeft=false;
-let earthGreenLeft=false;
-let startShine=false;
+//cloud movement variables(katie)
 let cloudMove=0;
 let cloudMove2=0;
-let finish2=false;
-let finish1=false;
-let y = 0;
 let cloudMove3=0;
 let cloudMove4=0;
-let finish3=false;
-let finish4=false;
+
+//seed bag variables(katie)
 let x = 30;
+let y = 0;
 let leftHit = true;
 let rightHit = false;
 let width = 50;
 let y1 = 50;
 let seedY = 30;
 let seedOnScreen = false;
-
+//survailance animation(katie)
 let tX1=460;
 let tX2=488;
 let tY1=94;
@@ -65,6 +72,7 @@ function setup() {
   frameRate(12);
 
 }
+// creates the sickly earth (veronika)
 function earthGrey(x,y,size,scaleP,mouth){
   push();
   translate(x,y);
@@ -72,8 +80,8 @@ function earthGrey(x,y,size,scaleP,mouth){
   fill("grey");
   ellipse(0,0,size,size);
   fill("silver");
-  //first contenent
   
+  //first contenent(veronika)
   beginShape();
   vertex(-30,-40);
   vertex(-20,-30);
@@ -91,7 +99,7 @@ function earthGrey(x,y,size,scaleP,mouth){
   vertex(-10,-49);
   vertex(-20, -46);
   endShape(CLOSE);
-  //second contenent
+  //second contenent(veronika)
   beginShape();
   vertex(-40,-10);
   vertex(-30,-20);
@@ -106,7 +114,7 @@ function earthGrey(x,y,size,scaleP,mouth){
   vertex(-30,10);
   vertex(-30,0);
   endShape(CLOSE);
-  //third contenent
+  //third contenent(veronika)
   beginShape();
   vertex(20,0);
   vertex(30,-10);
@@ -118,7 +126,7 @@ function earthGrey(x,y,size,scaleP,mouth){
   vertex(30,20);
   vertex(30,10);
   endShape(CLOSE);
-  //eyes
+  //eyes(veronika)
   push()
   noFill();
   strokeWeight(5);
@@ -134,7 +142,7 @@ function earthGrey(x,y,size,scaleP,mouth){
   vertex(15,0);
   vertex(5,-10);
   endShape();
-  //mouth
+  //mouth(veronika)
   beginShape();
   vertex(-25,mouth);
   vertex(-15,10);
@@ -144,6 +152,7 @@ function earthGrey(x,y,size,scaleP,mouth){
   pop();
   pop();
 }
+//creates the healthy earth, animates it scaling upward (veronika)
 function earthGreen(x,y,size,scaleP,mouth){
   push();
   translate(x,y);
@@ -151,8 +160,8 @@ function earthGreen(x,y,size,scaleP,mouth){
   fill("blue");
   ellipse(0,0,size,size);
   fill("green");
-  //first contenent
-  
+
+  //first contenent(veronika)
   beginShape();
   vertex(-30,-40);
   vertex(-20,-30);
@@ -170,7 +179,7 @@ function earthGreen(x,y,size,scaleP,mouth){
   vertex(-10,-49);
   vertex(-20, -46);
   endShape(CLOSE);
-  //second contenent
+  //second contenent(veronika)
   beginShape();
   vertex(-40,-10);
   vertex(-30,-20);
@@ -185,7 +194,7 @@ function earthGreen(x,y,size,scaleP,mouth){
   vertex(-30,10);
   vertex(-30,0);
   endShape(CLOSE);
-  //third contenent
+  //third contenent(veronika)
   beginShape();
   vertex(20,0);
   vertex(30,-10);
@@ -197,7 +206,7 @@ function earthGreen(x,y,size,scaleP,mouth){
   vertex(30,20);
   vertex(30,10);
   endShape(CLOSE);
-  //eyes
+  //eyes(veronika)
   push()
   noFill();
   strokeWeight(5);
@@ -231,6 +240,7 @@ function tear(x,y){
   ellipse(x,y+30,20,20);
   pop();
 }
+//emits a glow from behind the earth(veronika)
 function drawShine(x,y,width,height){
   push();
   stroke("yellow");
@@ -238,6 +248,7 @@ function drawShine(x,y,width,height){
   ellipse(x,y,width,height);
   pop();
 }
+//pollution cloud (veronika)
 function drawCloud(x, y, size) {
   noStroke();
   fill("grey");
@@ -1090,6 +1101,7 @@ tY2+=7;
 }
 function draw() {
   background(225);
+  //first scene of intro
   if (!earthGreyLeft){
     
   if(sizeChange<400&&scaleCounter1<2.5){
@@ -1423,13 +1435,59 @@ if(left4){
   }
 }
 if(finish1){
+  strokeWeight(2);
+  background(105, 168, 245);
+  backGround();
+  sun3();
+  if(cloudMove3<650){
+    cloudMove3+=7;
+  }else if (cloudMove3>=650){
+    cloudMove3=650;
+    finish2=true;
+  }
+  cloud1(cloudMove3);
+  cloud2(cloudMove3);
+  logPlacement();
+  fill(43,21,11);
+  stroke(0,0,0)
+  rect(350,300,60,70);  
+  ellipse(380,300,60,20);
+  translate(0,0);
+  translate(70,300);
+  ghostJaguar();
+  translate(-70,-300);
+  translate(357,225);
+  ghostMacaw();
+  translate(-357,-225);
+}
+if(finish2){
+  if(cloudMove4<650){
+    cloudMove4+=7;
+  }else if (cloudMove4=650){
+    cloudMove4=650;
+    finish3=true;
+    translate(+600,+600)
+  }
+  strokeWeight(2);
+  background(105, 168, 245);
+  backGround();
+  sun4();
+  cloud1(cloudMove4);
+  cloud2(cloudMove4);
+  seedSpawner();
+  seedPacket();
+  survailance();
+  light();
+}
+if(finish3){
+  translate(-600,-600)
   backGround();
   sun2();
   if(cloudMove<650){
     cloudMove+=7;
   }else if (cloudMove>=650){
     cloudMove=650;
-    finish2=true;
+    finish4=true;
   }
   cloud1(cloudMove);
   cloud2(cloudMove);
@@ -1449,50 +1507,5 @@ if(finish1){
   translate(-50,-300);
   translate(285,325)
   babyMacaw();
-}
-if(finish2){
-  translate(-287,-325);
-  strokeWeight(2);
-  background(105, 168, 245);
-  backGround();
-  sun3();
-  if(cloudMove3<650){
-    cloudMove3+=7;
-  }else if (cloudMove3>=650){
-    cloudMove3=650;
-    finish3=true;
-  }
-  cloud1(cloudMove3);
-  cloud2(cloudMove3);
-  logPlacement();
-  fill(43,21,11);
-  stroke(0,0,0)
-  rect(350,300,60,70);  
-  ellipse(380,300,60,20);
-  translate(0,0);
-  translate(70,300);
-  ghostJaguar();
-  translate(-70,-300);
-  translate(357,225);
-  ghostMacaw();
-  translate(-357,-225);
-}
-if(finish3){
-  if(cloudMove4<650){
-    cloudMove4+=7;
-  }else if (cloudMove4=650){
-    cloudMove4=650;
-    finish4=true;
-  }
-  strokeWeight(2);
-  background(105, 168, 245);
-  backGround();
-  sun4();
-  cloud1(cloudMove4);
-  cloud2(cloudMove4);
-  seedSpawner();
-  seedPacket();
-  survailance();
-  light();
 }
 }
