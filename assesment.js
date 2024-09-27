@@ -30,6 +30,10 @@ endShape();
   vertex(250,150);
   vertex(220,50); 
   endShape();
+
+  vertex(100,285); //side top
+  vertex(50,350);
+  vertex(45,400);
 }
 
 function draw(){
